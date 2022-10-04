@@ -73,14 +73,14 @@ export function connectAndSendIdentity({ getState, dispatch }: IStore, identity:
         const options = getConferenceOptions(state);
 
         // The current implementation of rtcstats-server is configured to send data to amplitude, thus
-        // we add identity specific information so we can correlate on the amplitude side. If amplitude is
+        // we add identity specific information in order to correlate on the amplitude side. If amplitude is
         // not configured an empty object will be sent.
         // The current configuration of the conference is also sent as metadata to rtcstats server.
         // This is done in order to facilitate queries based on different conference configurations.
         // e.g. Find all RTCPeerConnections that connect to a specific shard or were created in a
         // conference with a specific version.
         // XXX(george): we also want to be able to correlate between rtcstats and callstats, so we're
-        // appending the callstats user name (if it exists) to the display name.
+        // appending the callstats username (if it exists) to the display name.
         const displayName = options.statisticsId
                 || options.statisticsDisplayName
                 || jitsiLocalStorage.getItem('callStatsUserName');
